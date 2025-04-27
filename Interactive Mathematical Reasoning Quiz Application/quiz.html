@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathematical Reasoning Quiz</title>
+    <style>
+        :root {
+            --primary-color: #4a6fdc;
+            --secondary-color: #f0f4ff;
+            --text-color: #333;
+            --success-color: #28a745;
+            --error-color: #dc3545;
+            --neutral-color: #6c757d;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .description {
+            color: var(--neutral-color);
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        
+        .quiz-container {
+            margin-bottom: 30px;
+        }
+        
+        .question-container {
+            margin-bottom: 25px;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: var(--secondary-color);
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .question {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+        
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .option {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            background-color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .option:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .option input[type="radio"] {
+            margin-right: 10px;
+        }
+        
+        .option label {
+            cursor: pointer;
+            flex-grow: 1;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            background-color: #3a5bb9;
+        }
+        
+        .submit-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .result-container {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: var(--secondary-color);
+            text-align: center;
+        }
+        
+        .score {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .answers-review {
+            margin-top: 20px;
+            text-align: left;
+        }
+        
+        .review-item {
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: white;
+        }
+        
+        .correct {
+            border-left: 4px solid var(--success-color);
+        }
+        
+        .incorrect {
+            border-left: 4px solid var(--error-color);
+        }
+        
+        .review-question {
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .user-answer {
+            margin-bottom: 5px;
+        }
+        
+        .correct-answer {
+            color: var(--success-color);
+            font-weight: 600;
+        }
+        
+        .restart-btn {
+            margin-top: 20px;
+        }
+        
+        .progress-container {
+            width: 100%;
+            margin-bottom: 30px;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background-color: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .progress {
+            height: 100%;
+            background-color: var(--primary-color);
+            width: 0;
+            transition: width 0.3s ease;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Mathematical Reasoning Quiz</h1>
+            <p class="description">Test your mathematical reasoning skills with this interactive quiz.</p>
+        </header>
+        
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+        </div>
+        
+        <div class="quiz-container" id="quiz-container">
+            <!-- Questions will be dynamically inserted here -->
+        </div>
+        
+        <div class="submit-container">
+            <button class="btn" id="submit-btn">Submit Quiz</button>
+        </div>
+        
+        <div class="result-container" id="result-container">
+            <h2>Quiz Results</h2>
+            <div class="score" id="score">You scored: <span id="score-value">0</span>/10</div>
+            <div class="answers-review" id="answers-review">
+                <!-- Review will be dynamically inserted here -->
+            </div>
+            <button class="btn restart-btn" id="restart-btn">Restart Quiz</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
